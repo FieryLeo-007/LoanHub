@@ -43,3 +43,5 @@ Scikit-learn for machine learning models
 
 **Public Framework Used:** FastAPI was instrumental in creating efficient APIs for seamless integration between our FlutterFlow frontend and the machine learning models developed in Google Colab.
 
+**Check out the LoanHub Video Demo!** https://drive.google.com/file/d/1cGjQD5ojQhtnKFyrhXcjwoGWHT1Ktb4V/view?usp=sharing
+

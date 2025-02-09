@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoanHub - Smart Financing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function calculateDTI() {
+            let annualIncome = parseFloat(document.getElementById('annual_income').value) || 0;
+            let loanAmount = parseFloat(document.getElementById('loan_amount').value) || 0;
+            let dti = annualIncome > 0 ? (loanAmount / annualIncome) : 0;
+            document.getElementById('debt_to_income_ratio').value = dti.toFixed(2);
+        }
+        
+        function updateCreditScore(value) {
+            document.getElementById('credit_score_value').innerText = value;
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-r from-indigo-600 to-purple-700 p-10 text-white">
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-2xl text-gray-900">
+        
+        <!-- Enhanced Title -->
+        <h2 class="text-5xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-700 via-purple-600 to-pink-500 mb-6">
+            🚀 LoanHub - Your Gateway to Smart Financing 💰
+        </h2>
+
+        <!-- Creative Marquee -->
+        <marquee behavior="alternate" direction="left" class="text-lg font-semibold text-purple-600 mt-4">
+            🚀 An App Developed by <span class="text-indigo-700">The Fantastic4</span> 💡✨
+        </marquee>
+
+        <form action="/submit" method="POST" class="space-y-6">
+            
+            <!-- Personal Information -->
+            <h3 class="text-2xl font-semibold text-indigo-700">1️⃣ Personal Information</h3>
+            <div class="grid grid-cols-2 gap-4">
+                <input type="text" name="full_name" placeholder="Full Name" class="w-full p-3 border rounded-lg" required>
+                <input type="number" name="age" placeholder="Age" class="w-full p-3 border rounded-lg" required>
+                <select name="gender" class="w-full p-3 border rounded-lg">
+                    <option value="" disabled selected>Select Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                </select>
+                <select name="marital_status" class="w-full p-3 border rounded-lg">
+                    <option value="" disabled selected>Select Marital Status</option>
+                    <option>Single</option>
+                    <option>Married</option>
+                    <option>Divorced</option>
+                    <option>Widowed</option>
+                </select>
+                <input type="number" name="dependents" placeholder="Number of Dependents" class="w-full p-3 border rounded-lg" required>
+            </div>
+            
+            <!-- Employment & Financial Information -->
+            <h3 class="text-2xl font-semibold text-indigo-700">2️⃣ Employment & Financial Information</h3>
+            <div class="grid grid-cols-2 gap-4">
+                <select name="employment_status" class="w-full p-3 border rounded-lg">
+                    <option value="" disabled selected>Select Employment Status</option>
+                    <option>Employed</option>
+                    <option>Self-Employed</option>
+                    <option>Unemployed</option>
+                    <option>Retired</option>
+                    <option>Student</option>
+                </select>
+                <select name="employment_sector" class="w-full p-3 border rounded-lg">
+                    <option value="" disabled selected>Select Employment Sector</option>
+                    <option>Retail</option>
+                    <option>Technology</option>
+                    <option>Education</option>
+                    <option>Finance</option>
+                    <option>Healthcare</option>
+                    <option>Government</option>
+                    <option>Manufacturing</option>
+                    <option>Other</option>
+                </select>
+                <input type="number" id="annual_income" name="annual_income" placeholder="Annual Income ($)" class="w-full p-3 border rounded-lg" required oninput="calculateDTI()">
+                <input type="number" name="savings_balance" placeholder="Savings Balance ($)" class="w-full p-3 border rounded-lg" required>
+                <input type="number" name="existing_loans" placeholder="Number of Active Loans" class="w-full p-3 border rounded-lg" required>
+                <input type="number" name="employment_stability_years" placeholder="Employment Stability (Years)" class="w-full p-3 border rounded-lg" required>
+
+                <!-- Credit Score Slider -->
+                <label class="block text-indigo-700 font-semibold">Credit Score</label>
+                <input type="range" name="credit_score" id="credit_score" min="300" max="850" step="10" class="w-full" oninput="updateCreditScore(this.value)">
+                <span id="credit_score_value" class="font-bold text-indigo-700">575</span>
+            </div>
+            
+            <!-- Loan Details -->
+            <h3 class="text-2xl font-semibold text-indigo-700">4️⃣ Loan Details</h3>
+            <div class="grid grid-cols-2 gap-4">
+                <select name="loan_type" class="w-full p-3 border rounded-lg">
+                    <option value="" disabled selected>Select Loan Type</option>
+                    <option>Refinance</option>
+                    <option>First Loan</option>
+                </select>
+                <select name="loan_purpose_type" class="w-full p-3 border rounded-lg">
+                    <option value="" disabled selected>Select Loan Purpose</option>
+                    <option>Auto Loan</option>
+                    <option>Personal Loan</option>
+                    <option>Mortgage</option>
+                    <option>Small Business Loan</option>
+                    <option>Medical Loan</option>
+                    <option>Education Loan</option>
+                </select>
+                <select name="co_applicant" class="w-full p-3 border rounded-lg">
+                    <option value="" disabled selected>Co-Applicant?</option>
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+
+                <!-- Loan Amount -->
+                <input type="number" id="loan_amount" name="loan_amount" placeholder="Loan Amount ($)" class="w-full p-3 border rounded-lg" required oninput="calculateDTI()">
+                
+                <!-- Loan Term with Placeholder -->
+                <input type="number" name="loan_term" placeholder="Loan Term (months)" class="w-full p-3 border rounded-lg" required>
+                
+                <!-- Bank Relationship -->
+                <input type="number" name="bank_relationship" placeholder="Bank Relationship (years)" class="w-full p-3 border rounded-lg" required>
+            </div>
+
+            <!-- Derived Feature -->
+            <h3 class="text-2xl font-semibold text-indigo-700">5️⃣ Debt-to-Income Ratio</h3>
+            <input type="text" id="debt_to_income_ratio" name="debt_to_income_ratio" class="w-full p-3 border rounded-lg bg-gray-200" readonly>
+
+            <!-- Property & Residency Details -->
+            <h3 class="text-2xl font-semibold text-indigo-700">6️⃣ Property & Residency Details</h3>
+            <div class="grid grid-cols-2 gap-4">
+                <select name="property_type" class="w-full p-3 border rounded-lg">
+                    <option value="" disabled selected>Select Property Type</option>
+                    <option>Condo</option>
+                    <option>Multi-Family</option>
+                    <option>Townhouse</option>
+                    <option>Apartment</option>
+                    <option>Single Family</option>
+                </select>
+                <select name="home_ownership" class="w-full p-3 border rounded-lg">
+                    <option value="" disabled selected>Select Home Ownership</option>
+                    <option>Own</option>
+                    <option>Rent</option>
+                    <option>Mortgage</option>
+                    <option>Other</option>
+                </select>
+                <select name="residency_status" class="w-full p-3 border rounded-lg">
+                    <option value="" disabled selected>Select Residency Status</option>
+                    <option>Citizen</option>
+                    <option>Permanent Resident</option>
+                    <option>Work Visa</option>
+                    <option>Student Visa</option>
+                </select>
+            </div>
+<!-- Partner Banks Multi-Selectable -->
+<h3 class="text-2xl font-semibold text-indigo-700">7️⃣ Choose Partner Banks</h3>
+<div class="grid grid-cols-2 gap-4">
+    <label class="flex items-center">
+        <input type="checkbox" name="partner_banks" value="Bank of America" class="mr-2">
+        Bank of America
+    </label>
+    <label class="flex items-center">
+        <input type="checkbox" name="partner_banks" value="Truist" class="mr-2">
+        Truist
+    </label>
+    <label class="flex items-center">
+        <input type="checkbox" name="partner_banks" value="American Express" class="mr-2">
+        American Express
+    </label>
+    <label class="flex items-center">
+        <input type="checkbox" name="partner_banks" value="Chase" class="mr-2">
+        Chase
+    </label>
+</div>
+<p class="text-sm text-gray-600 mt-2">You can select multiple banks.</p>
+              <!-- Submit and Reset Buttons -->
+            <div class="text-center mt-6">
+                <button type="submit" class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 shadow-lg text-xl">Submit Application</button>
+                <button type="reset" class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 shadow-lg text-xl ml-4">Reset</button>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Approval Results</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #4f46e5, #9333ea, #ec4899);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+        }
+        .glass-container {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        .tile {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .tile:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .result-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .approved {
+            color: #16a34a;
+            background: rgba(22, 163, 74, 0.1);
+            border: 2px solid #16a34a;
+        }
+        .denied {
+            color: #dc2626;
+            background: rgba(220, 38, 38, 0.1);
+            border: 2px solid #dc2626;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-container max-w-4xl mx-auto text-center">
+        <h2 class="text-5xl font-extrabold text-white drop-shadow-lg mb-6 animate-pulse">
+            🚀 LoanHub Results 🏦
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {% for result in results %}
+                <div class="tile bg-white p-6 rounded-lg shadow-lg border-l-8 {% if result.result == 'Approved' %}approved{% else %}denied{% endif %}">
+                    <h3 class="text-2xl font-bold text-indigo-700">{{ result.bank }}</h3>
+                    <p class="result-text {% if result.result == 'Approved' %}text-green-600{% else %}text-red-600{% endif %} mt-2">
+                        {{ result.result }}
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="mt-8">
+            <a href="/" class="bg-gradient-to-r from-indigo-600 to-purple-700 text-white px-8 py-4 rounded-lg hover:opacity-80 text-lg font-bold shadow-lg transition-all duration-300">
+                🔄 Try Again
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
